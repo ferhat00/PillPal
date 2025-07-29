@@ -74,7 +74,18 @@ export class MemStorage implements IStorage {
 
   async createMedicationSchedule(insertSchedule: InsertMedicationSchedule): Promise<MedicationSchedule> {
     const id = randomUUID();
-    const schedule: MedicationSchedule = { ...insertSchedule, id };
+    const schedule: MedicationSchedule = { 
+      id,
+      name: insertSchedule.name,
+      morningTime: insertSchedule.morningTime || null,
+      morningEnabled: insertSchedule.morningEnabled || null,
+      afternoonTime: insertSchedule.afternoonTime || null,
+      afternoonEnabled: insertSchedule.afternoonEnabled || null,
+      eveningTime: insertSchedule.eveningTime || null,
+      eveningEnabled: insertSchedule.eveningEnabled || null,
+      nightTime: insertSchedule.nightTime || null,
+      nightEnabled: insertSchedule.nightEnabled || null,
+    };
     this.medicationSchedules.set(id, schedule);
     return schedule;
   }

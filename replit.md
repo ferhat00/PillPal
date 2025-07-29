@@ -2,11 +2,24 @@
 
 ## Overview
 
-This is a medication reminder application built with React, Express, and a PostgreSQL database using Drizzle ORM. The app helps users manage their daily medication schedule with a visual pill organizer interface and tracks medication logs.
+This is a medication reminder application built with React, Express, and in-memory storage designed specifically for elderly users. The app features a vertical pill organizer interface with large, accessible components and helps users manage their daily medication schedule with visual indicators and tracking.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+## Recent Changes
+
+✓ **Vertical pill organizer layout** - Redesigned compartments to stack vertically (top to bottom) for better accessibility
+✓ **Elderly-friendly interface** - Large text, high contrast colors, clear visual indicators
+✓ **Active medication alerts** - Visual arrows and alerts showing which compartment to open
+✓ **Medication tracking** - "I Took My Medicine" button functionality
+✓ **Settings management** - Customizable medication times with enable/disable options
+✓ **Emergency contacts** - Quick access buttons for family, doctor, and emergency calls
+✓ **Fixed React re-rendering bug** - Resolved infinite re-render loop in Settings component
+✓ **TypeScript fixes** - Corrected type compatibility issues in storage layer
+
+Date: July 29, 2025
 
 ## System Architecture
 

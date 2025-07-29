@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link } from "wouter";
+import { useEffect } from "react";
 import { ArrowLeft, Settings as SettingsIcon, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -71,20 +72,22 @@ export default function Settings() {
     },
   });
 
-  // Reset form when schedule data loads
-  if (schedule && !form.formState.isDirty) {
-    form.reset({
-      name: schedule.name,
-      morningEnabled: schedule.morningEnabled || false,
-      morningTime: schedule.morningTime || "08:00",
-      afternoonEnabled: schedule.afternoonEnabled || false,
-      afternoonTime: schedule.afternoonTime || "14:00",
-      eveningEnabled: schedule.eveningEnabled || false,
-      eveningTime: schedule.eveningTime || "18:00",
-      nightEnabled: schedule.nightEnabled || false,
-      nightTime: schedule.nightTime || "22:00",
-    });
-  }
+  // Reset form when schedule data loads - use useEffect to prevent re-render loop
+  useEffect(() => {
+    if (schedule && !form.formState.isDirty) {
+      form.reset({
+        name: schedule.name,
+        morningEnabled: schedule.morningEnabled || false,
+        morningTime: schedule.morningTime || "08:00",
+        afternoonEnabled: schedule.afternoonEnabled || false,
+        afternoonTime: schedule.afternoonTime || "14:00",
+        eveningEnabled: schedule.eveningEnabled || false,
+        eveningTime: schedule.eveningTime || "18:00",
+        nightEnabled: schedule.nightEnabled || false,
+        nightTime: schedule.nightTime || "22:00",
+      });
+    }
+  }, [schedule, form]);
 
   const onSubmit = (data: SettingsFormData) => {
     updateMutation.mutate(data);
